@@ -1,6 +1,5 @@
 import * as React from 'react'
 import * as ReactDom from 'react-dom'
+import Index from './containers'
 
-const Hello = () => <div>{'Hello'}</div>
-
-ReactDom.render(<Hello />, document.getElementsByTagName('main')[0])
+ReactDom.render(<Index />, document.getElementsByTagName('main')[0])
