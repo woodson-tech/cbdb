@@ -1,0 +1,28 @@
+{
+  "name": "cbdb",
+  "version": "1.0.0",
+  "description": "Comic Book Database",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm run clear:dist && npm run copy:dist && webpack-dev-server --config webpack.config.js",
+    "clear:dist": "rm -rf ./dist && mkdir dist",
+    "copy:dist": "cp ./src/index.html ./dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woodson-tech/cbdb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/woodson-tech/cbdb/issues"
+  },
+  "homepage": "https://github.com/woodson-tech/cbdb#readme",
+  "devDependencies": {
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
+  }
+}
