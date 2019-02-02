@@ -24,10 +24,12 @@
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
+    "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "babel-cli": "^6.26.0",
     "babel-loader": "^8.0.5",
     "flow-bin": "^0.92.0",
+    "pouchdb": "^7.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "webpack": "^4.29.0",
@@ -44,5 +46,8 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "dependencies": {
+    "dotenv-safe": "^6.1.0"
   }
 }
