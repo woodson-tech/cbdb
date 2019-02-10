@@ -2,6 +2,7 @@
 
 import * as React from 'react'
 import PouchDB from 'pouchdb'
+import Details from './../Details'
 
 /**
  * [COMP DESCRIPTION]
@@ -17,6 +18,9 @@ db.info().then(console.log)
 
 type Props = {||}
 
-const Comp = (props: Props) => <div>{'Index Container'}</div>
+const Comp = (props: Props) =>
+<div>
+  <Details />
+</div>
 
 export default Comp
