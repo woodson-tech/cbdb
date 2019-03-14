@@ -1,0 +1,21 @@
+{
+  "_id": "ac78f6f1ed5732748818609cc60005b7",
+  "_rev": "2-cae05f37547ea48919e159ea30c9f9a1",
+  "artists": [
+    "Christian Ward"
+  ],
+  "barcode": "00111",
+  "book_title": "The Jen is Mightier",
+  "date": "2019-01",
+  "id": "TMJ001",
+  "issue_title": "War of the Gods",
+  "legacy_number": 1,
+  "notes": "Great issue",
+  "number": 2,
+  "publisher": "That one publisher",
+  "series_title": "The Mighty Jen",
+  "writers": [
+    "Jen Woodson",
+    "Cam Woodson"
+  ]
+}

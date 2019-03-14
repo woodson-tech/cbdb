@@ -6,83 +6,123 @@ import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import detailsStyles from './styles';
 
-// map over props.issue.authors
-const createList = () => {
-  const authorsList = ['Jason Aaron', 'Eve Ewing', 'Kelly Thompson'].map(author => {
+// map over arrays in props
+const createList = (listArray) => {
+  return listArray.map((item, index) => {
     return(
-      <ListItem>
-        <ListItemText primary={author}/>
+      <ListItem key={index}
+                style={detailsStyles.issueDetailListItem} >
+        <ListItemText primary={item}
+                      disableTypography={true}
+                      style={detailsStyles.issueDetailListItemText} />
       </ListItem>)
   });
-  return authorsList;
+}
+
+const formatDate = (yearMonthDate) => {
+  const months = {
+    '01': 'January',
+    '02': 'February',
+    '03': 'March',
+    '04': 'April',
+    '05': 'May',
+    '06': 'June',
+    '07': 'July',
+    '08': 'August',
+    '09': 'September',
+    '10': 'October',
+    '11': 'November',
+    '12': 'December'
+  }
+  const monthNum = yearMonthDate.substring(yearMonthDate.length-2);
+  let monthName = months[monthNum];
+  const year = yearMonthDate.substring(0, 4);
+
+  return `${monthName} ${year}`;
 }
 
 const Details = (props) => {
   return(
     <Card
-      style={{display: 'flex'}}>
+      style={detailsStyles.card}>
       <CardMedia
         component='img'
-        style={{height: '500px', width: '40%'}}
+        style={detailsStyles.issueImage}
         image={'https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/Item/664758/664758._SX1280_QL80_TTD_.jpg'}
         />
       <CardContent
-        style={{width: '60%'}}>
-        <Typography
-          variant='h2'
-          style={{display: 'flex', justifyContent: 'space-around'}}>
-            <span className="issue-series-title">Series Title</span>
-            <span className="issue-number">#N</span>
-        </Typography>
-        <Typography
-          variant='h5'>
-          LGY#NNN
-        </Typography>
-        <Typography
-          variant='h3'>
-          Book Title
-        </Typography>
-        <Typography
-          variant='h3'>
-          Issue Title
-        </Typography>
-        <div className='issue-authors-container' style={{display: 'flex', justifyContent: 'space-around'}}>
-          <Typography
-            variant='h4'>
-            Author(s):
-          </Typography>
-          <List dense={true}>
-            {createList()}
-          </List>
+        style={detailsStyles.issueDetailsSection}>
+        <div className='issue-titles-container'
+             style={detailsStyles.issueTitlesContainer} >
+          <div style={detailsStyles.issueTitlesTopRow} >
+            <h1 style={detailsStyles.issueSeriesTitle}>{props.issue.series_title}</h1>
+            <div className='issue-num-container'
+                  style={detailsStyles.issueNumbersContainer} >
+              <p style={detailsStyles.issueNumber} >
+                {`#${props.issue.number}`}
+              </p>
+              {
+                props.issue.legacy_number &&
+                <p style={detailsStyles.issueNumberLegacy}>
+                  {`LGY#${props.issue.legacy_number}`}
+                </p>
+              }
+            </div>
+          </div>
+          {props.issue.book_title &&
+            <h2 style={detailsStyles.issueSubTitles} >
+              {props.issue.book_title}
+            </h2>
+          }
+          {props.issue.issue_title &&
+            <h2 style={detailsStyles.issueSubTitles} >
+              {props.issue.issue_title}
+            </h2>
+          }
         </div>
-        <div className='issue-artists-container' style={{display: 'flex', justifyContent: 'space-around'}}>
-          <Typography
-            variant='h4'>
-            Artist(s):
-          </Typography>
-          <List dense={true}>
-            {createList()}
-          </List>
+        <div className='issue-details-container'
+             style={detailsStyles.issueDetailsContainer} >
+          <div className='issue-detail issue-authors-container' 
+               style={detailsStyles.issueDetailItemContainer} >
+            <h3 style={detailsStyles.issueDetailLabel} >Author(s):</h3>
+            <List style={detailsStyles.issueDetailList} >
+              {createList(props.issue.writers)}
+            </List>
+          </div>
+          <div className='issue-detail issue-artists-container' 
+               style={detailsStyles.issueDetailItemContainer} >
+            <h3 style={detailsStyles.issueDetailLabel} >Artist(s):</h3>
+            <List style={detailsStyles.issueDetailList} >
+              {createList(props.issue.artists)}
+            </List>
+          </div>
+          <div className='issue-detail issue-date-container' 
+               style={detailsStyles.issueDetailItemContainer} >
+            <h3 style={detailsStyles.issueDetailLabel} >Publication Date:</h3>
+            <p style={detailsStyles.issueDetail} >{formatDate(props.issue.date)}</p>
+          </div>
+          <div className='issue-detail issue-publisher-container' 
+               style={detailsStyles.issueDetailItemContainer} >
+            <h3 style={detailsStyles.issueDetailLabel} >Publisher:</h3>
+            <p style={detailsStyles.issueDetail} >{props.issue.publisher}</p>
+          </div>
+          {props.issue.barcode &&
+            <div className='issue-detail issue-barcode-container' 
+                 style={detailsStyles.issueDetailItemContainer} >
+              <h3 style={detailsStyles.issueDetailLabel} >Barcode:</h3>
+              <p style={detailsStyles.issueDetail} >{props.issue.barcode}</p>
+            </div>
+          }
+          {props.issue.notes &&
+            <div className='issue-detail issue-notes-container'
+                 style={detailsStyles.issueDetailItemContainer} >
+              <h3 style={detailsStyles.issueDetailLabel} >Notes:</h3>
+              <p style={detailsStyles.issueDetail} >{props.issue.notes}</p>
+            </div>
+          }
         </div>
-        <Typography
-          variant='h5'
-          style={{display: 'flex', justifyContent: 'space-around'}}>
-          <span className='issue-pub-date-label'>Publication Date:</span>
-          <span className='issue-pub-date'>October 2019</span>
-        </Typography>
-        <Typography
-          variant='h5'
-          style={{display: 'flex', justifyContent: 'space-around'}}>
-          <span className='issue-publisher-label'>Publisher:</span>
-          <span className='issue-publisher'>Marvel</span>
-        </Typography>
-        <Typography
-          variant='h5'
-          style={{display: 'flex', justifyContent: 'space-around'}}>
-          <span className='issue-barcode-label'>Barcode:</span>
-          <span className='issue-barcode'>00111</span>
-        </Typography>
       </CardContent>
     </Card>
   );
